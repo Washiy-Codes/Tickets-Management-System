@@ -21,6 +21,7 @@ const TicketsPage = () => {
         <TicketList />
       </Suspense>
     </div>
+    
   )
 }
 

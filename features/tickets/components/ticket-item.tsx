@@ -4,6 +4,7 @@ import {
   CardHeader,
   CardTitle,
   CardContent,
+  CardFooter,
 } from "@/components/ui/card";
 import { ticketEditPath, ticketPath } from "@/paths";
 import Link from "next/link";
@@ -37,7 +38,7 @@ const TicketItem = ({ ticket, isDetail }: TicketItemProps) => {
     </form>
 
     const editButton = (
-        <Button variant="outline" size="icon">
+        <Button asChild variant="outline" size="icon">
             <Link prefetch href={ticketEditPath(ticket.id)} className="text-sm">
                 <LucideEdit />
             </Link>
@@ -62,6 +63,10 @@ const TicketItem = ({ ticket, isDetail }: TicketItemProps) => {
                      "line-clamp-3": !isDetail,
                   })}>{ticket.content}</span>
                 </CardContent>  
+                <CardFooter className="flex justify-between">
+                 <p className="text-sm text-muted-foreground">{ticket.deadline}</p>
+                 <p className="text-lg font-bold">${(ticket.bounty / 100).toFixed(2)}</p>
+                </CardFooter>
             </Card>
             <div className="flex flex-col gap-y-2">
             {isDetail ? (

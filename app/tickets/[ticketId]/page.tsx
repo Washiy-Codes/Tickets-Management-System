@@ -22,7 +22,7 @@ const TicketPage= async({params}: TicketPageProps) => {
             <TicketItem ticket={ticket} isDetail={true} />
         </div>
     </div>
-
+    
   )
 }
 
