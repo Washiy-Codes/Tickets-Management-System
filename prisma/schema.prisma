@@ -1,13 +1,9 @@
 // This is your Prisma schema file,
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
-// Get a free hosted Postgres database in seconds: `npx create-db`
-
 generator client {
-  provider = "prisma-client"
-  output   = "../app/generated/prisma"
+  provider      = "prisma-client-js"
   binaryTargets = ["native", "rhel-openssl-1.0.x"]
-
 }
 
 datasource db {
@@ -15,31 +11,55 @@ datasource db {
 }
 
 model User { 
-  id            String  @id @default(cuid()) 
-  username      String       @unique
-  email         String      @unique
-  passwordHash  String
+  id            String    @id @default(cuid()) 
+  username      String    @unique
+  email         String    @unique
+  passwordHash  String?   // Made optional so GitHub/OAuth sign-ins don't crash due to a missing password
+  image         String?   // NextAuth maps the provider's profile image here
+  emailVerified DateTime? // NextAuth expects this to handle email-based state tracking
   sessions      Session[]
+  accounts      Account[] // Crucial: Connects users to their OAuth profiles
+}
+
+// Added this model to resolve NextAuth OAuth token management
+model Account {
+  id                String  @id @default(cuid())
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String? @db.Text
+  access_token      String? @db.Text
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String? @db.Text
+  session_state     String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
 }
 
 model Session {
-  id     String   @id
-  expiresAt    DateTime
-  userId      String
-  user User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  id           String   @id @default(cuid())
+  sessionToken String   @unique @map("session_token") // Internal NextAuth identifier
+  userId       String   @map("user_id")
+  expires      DateTime @map("expires_at") // Maps NextAuth's 'expires' property onto your 'expiresAt' column
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@index([userId])
 }
 
 model Ticket {
-  id        String   @id @default(cuid())
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  id        String       @id @default(cuid())
+  createdAt DateTime     @default(now())
+  updatedAt DateTime     @updatedAt
   title     String
-  content   String   @db.VarChar(1024)
-  status    TicketStatus  @default(OPEN)
-  deadline  String   @default("2026-6-24")
-  bounty Int     @default(0) 
+  content   String       @db.VarChar(1024)
+  status    TicketStatus @default(OPEN)
+  deadline  String       @default("2026-6-24")
+  bounty    Int          @default(0) 
 }
 
 enum TicketStatus {
