@@ -19,6 +19,7 @@ model User {
   emailVerified DateTime? // NextAuth expects this to handle email-based state tracking
   sessions      Session[]
   accounts      Account[] // Crucial: Connects users to their OAuth profiles
+  tickets       Ticket[]    
 }
 
 // Added this model to resolve NextAuth OAuth token management
@@ -60,6 +61,10 @@ model Ticket {
   status    TicketStatus @default(OPEN)
   deadline  String       @default("2026-6-24")
   bounty    Int          @default(0) 
+  userId    String
+  user      User         @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
 }
 
 enum TicketStatus {

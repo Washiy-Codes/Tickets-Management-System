@@ -1,9 +1,11 @@
 import NextAuth from "next-auth"
 import Github from "next-auth/providers/github"
+import GoogleProvider from "next-auth/providers/google"
 import { PrismaAdapter } from "@auth/prisma-adapter"
-import Credentials from "next-auth/providers/credentials"
+import CredentialsProvider from "next-auth/providers/credentials"
 import bcrypt from "bcryptjs"
 import { db } from "./db"
+import prisma from "@/lib/prisma"
 
 export const { 
  handlers,
@@ -16,12 +18,54 @@ export const {
     strategy: "jwt",
   },
   providers: [
-    Credentials({
+    CredentialsProvider({
+      async authorize(credentials) {
+        const user = await prisma.user.findUnique({
+          where: { email: credentials.email as string },
+        })
 
+        if (!user || !user.passwordHash) return null
+
+        const valid = await bcrypt.compare(
+          credentials.password as string,
+          user.passwordHash
+        )
+
+        if (!valid) return null
+
+        return {
+          id: user.id,
+          email: user.email,
+          name: user.username,
+        }
+      },
     }),
     Github({
       clientId: process.env.AUTH_GITHUB_CLIENT_ID,
       clientSecret: process.env.AUTH_GITHUB_CLIENT_SECRET,
+
+
+     authorization: {
+        params: {
+          prompt: "consent",
+          access_type: "offline",
+          response_type: "code",
+        },
+      },
+    }),
+    GoogleProvider({
+      clientId: process.env.AUTH_GOOGLE_CLIENT_ID,
+      clientSecret: process.env.AUTH_GOOGLE_CLIENT_SECRET,
+      allowDangerousEmailAccountLinking: true,
+
+
+      authorization: {
+        params: {
+          prompt: "consent",
+          access_type: "offline",
+          response_type: "code",
+        },
+      },
     }),
   ],
 })
