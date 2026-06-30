@@ -1,5 +1,5 @@
 "use client"
-import { Ticket, TicketStatus } from "@/app/generated/prisma/client";
+import { Ticket, TicketStatus } from "@prisma/client";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuRadioGroup, DropdownMenuRadioItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import { LucideTrash2 } from "lucide-react";
 import {TICKETS_STATUS_LABELS} from "../constants";

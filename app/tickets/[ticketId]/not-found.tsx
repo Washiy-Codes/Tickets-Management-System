@@ -6,11 +6,12 @@ import Link from 'next/link';
 
 const NotFound = () => {
     return (
-        <Placeholder label="Ticket not found." button = 
-             <Button>
+        <Placeholder label="We could not find your ticket." button = 
+         {<Button variant="default" size="sm" className="w-full">
             <Link href={ticketsPath()}>Back to Tickets</Link>
-            </Button>
-                />
+         </Button>}
+                
+        />
     )
 }
 export default NotFound;

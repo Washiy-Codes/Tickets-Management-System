@@ -1,3 +1,4 @@
+import {Prisma} from "@prisma/client";
 import {clsx} from "clsx";
 import {
   Card,
@@ -11,14 +12,17 @@ import Link from "next/link";
 import { TICKETS_ICONS } from "../constants";
 import { Button } from "@/components/ui/button";
 import { LucideEdit, LucideMoreVertical, LucideSquareArrowOutUpRight} from "lucide-react";
-import { Ticket } from "@/app/generated/prisma/client";
-import { deleteTicket} from "../actions/delete-ticket";
 import { currencyFromCents } from "@/components/utils/currency";
 import { TicketMoreMenu } from "./ticket-more-menu";
+// import { User, Ticket } from "@/app/generated/prisma/client";
 
-interface TicketItemProps {
-    ticket: Ticket;
-    isDetail?: boolean;
+type  TicketItemProps ={
+    ticket: Prisma.TicketGetPayload<{
+        include: {
+            user: true;
+        }
+    }>;
+    isDetail?: boolean
 }
 
 
@@ -64,7 +68,7 @@ const TicketItem = ({ ticket, isDetail }: TicketItemProps) => {
                   })}>{ticket.content}</span>
                 </CardContent>  
                 <CardFooter className="flex justify-between">
-                 <p className="text-sm text-muted-foreground">{ticket.deadline}</p>
+                 <p className="text-sm text-muted-foreground">{ticket.deadline} by {ticket.user.username}</p>
                  <p className="text-md font-bold text-primary">
                     {currencyFromCents(ticket.bounty)}
                  </p>

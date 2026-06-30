@@ -1,6 +1,6 @@
 "use server";
 
-import { TicketStatus } from "@/app/generated/prisma/client";
+import { TicketStatus } from "@prisma/client";
 import { fromErrorToActionState, toActionState } from "@/components/form/utils/to-action-state";
 import prisma from "@/lib/prisma";
 import { ticketsPath } from "@/paths";
