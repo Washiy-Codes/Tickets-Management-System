@@ -8,6 +8,7 @@ import prisma from "@/lib/prisma";
 import bcrypt from "bcryptjs";
 import { signIn } from "@/auth"; 
 
+
 const signInSchema = z.object({
   email: z.string().email(),
   password: z.string().min(6).max(100).trim(),
@@ -42,8 +43,8 @@ const signInAction = async (_actionState: ActionState, formData: FormData) => {
         email,
         password,
         redirect: false,
+
       });
-     
       if (result?.error) {
         return toActionState("ERROR", "Login failed", formData);
       }
