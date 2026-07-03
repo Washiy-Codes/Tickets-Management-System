@@ -1,9 +1,10 @@
-import { SearchInput } from "@/components/search-input";
 import { TicketItem } from "./ticket-item"
 import { getTickets } from '@/features/tickets/queries/get-tickets';
 import { ParsedSearchParams} from "../search-params";
 import { Placeholder } from "@/components/placeholder";
-import { SortSelect } from "@/components/sort-select";
+import { TicketSearchInput } from "./ticket-search-input";
+import { TicketSortSelect } from "./ticket-sort-select";
+import { TicketPagination } from "./ticket-pagination";
 
 
 type TicketListProps = {
@@ -12,23 +13,39 @@ type TicketListProps = {
 }
 
 const TicketList = async ({userId, searchParams}:TicketListProps) =>{
-      const tickets = await getTickets(searchParams, userId);
+      const { list: tickets, metadata: ticketMetadata } = await getTickets(userId, searchParams);
+
+
 
     return(
         <div className="flex flex-col gap-4 flex-1 items-center justify-center animate-fade-in-from-top">
 
        <div className="w-full flex max-w-105 gap-x-2">
         <div className="flex-1">
-         <SearchInput placeholder="search ticket..." />
+         <TicketSearchInput placeholder="search ticket..." />
        </div>
 
       <div className="flex-1">
-       <SortSelect defaultValue="Newest"
-      options={[
-        { label: "Newest", value: "newest" },
-        { label: "Bounty", value: "bounty" }
-      ]}
-         />
+      <TicketSortSelect
+        options={[
+          {
+            sortKey: "createdAt",
+            sortValue: "desc",
+            label: "Newest",
+          },
+          {
+            sortKey: "createdAt",
+            sortValue: "asc",
+            label: "Oldest",
+          },
+          {
+            sortKey: "bounty",
+            sortValue: "desc",
+            label: "Bounty",
+          },
+          
+        ]}
+      />
         </div>
          </div>
           {tickets.length > 0 ? (
@@ -38,6 +55,9 @@ const TicketList = async ({userId, searchParams}:TicketListProps) =>{
           ) : (
             <Placeholder label="No tickets found" />
           )}
+          <div className="w-full max-w-105">
+            <TicketPagination paginatedTicketMetadata={ticketMetadata} />
+          </div>
         </div>
     
     )
