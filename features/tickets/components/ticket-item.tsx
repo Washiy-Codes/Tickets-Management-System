@@ -17,6 +17,7 @@ import { TicketMoreMenu } from "./ticket-more-menu";
 import { getAuthOrRedirect } from "@/features/auth/actions/get-auth-or-redirect";
 import { isOwner } from "@/features/auth/utils/is-owner";
 import { Comments } from "@/features/comment/component/comment";
+import { Suspense } from "react";
 
 type  TicketItemProps ={
     ticket: Prisma.TicketGetPayload<{
@@ -65,8 +66,8 @@ const TicketItem = async({ ticket, isDetail }: TicketItemProps) => {
            "max-w-sm": !isDetail,
            "max-w-md": isDetail
         })}>
-        <div className="flex flex-col gap-y-2 w-full">
-        <Card key={ticket.id} className="mb-4 max-w-sm w-full">
+        <div className="flex  gap-x-2 w-full">
+        <Card key={ticket.id} className="mb-4 w-full max-w-110">
             <CardHeader>
                 <CardTitle className="flex items-center gap-x-2">
                 <span>{TICKETS_ICONS[ticket.status]}</span>
