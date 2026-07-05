@@ -25,9 +25,16 @@ const SidebarItem = ({ isOpen, navItem, isActive }: SidebarItemProps) => {
         isActive && "bg-muted font-bold hover:bg-muted"
       )}
     >
-      {cloneElement(navItem.icon as React.ReactElement, {
+      {/* {cloneElement(navItem.icon as React.ReactElement, {
         className: "h-5 w-5",
-      })}
+      })} */}
+      {cloneElement(navItem.icon as React.ReactElement<{ className?: string }>, {
+  className: cn(
+    "h-5 w-5",
+    (navItem.icon as React.ReactElement<{ className?: string }>).props.className
+  ),
+})}
+
       <span
         className={cn(
           "absolute left-12 text-base duration-200",
