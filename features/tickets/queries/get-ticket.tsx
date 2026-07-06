@@ -5,6 +5,7 @@ type ticketProps = {
 }
 
 const getTicket = async({ticketId}: ticketProps) => {
+  await new Promise((resolve) => setTimeout(resolve, 2000));
   return await prisma.ticket.findUnique({
     where: {
       id: ticketId
