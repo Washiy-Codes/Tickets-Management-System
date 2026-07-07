@@ -17,7 +17,6 @@ import { TicketMoreMenu } from "./ticket-more-menu";
 import { getAuthOrRedirect } from "@/features/auth/actions/get-auth-or-redirect";
 import { isOwner } from "@/features/auth/utils/is-owner";
 import { Comments } from "@/features/comment/component/comment";
-import { CommentWithMetadata } from "@/features/comment/types";
 
 
 type  TicketItemProps ={
