@@ -1,0 +1,26 @@
+
+"use client";
+import { Form } from "@/components/form/form";
+import { SubmitButton } from "@/components/form/submit-button";
+import { EMPTY_ACTION_STATE } from "@/components/form/utils/to-action-state";
+import { Input } from "@/components/ui/input";
+import { useActionState} from "react";
+import { FieldErrors } from "@/components/form/field-errors";
+import { forgotPasswordAction } from "../actions/forgot-password";
+
+const ForgotPasswordForm =  () => {
+  const [actionState, action] = useActionState(forgotPasswordAction, EMPTY_ACTION_STATE);
+
+  return (
+    <div className="flex flex-col gap-4">
+      <Form action={action} actionState={actionState} >
+        <Input name="email" type="email" placeholder="Email" defaultValue={actionState.payload?.get("email") as string}  />
+        <FieldErrors name="email" actionState={actionState} />
+        
+        <SubmitButton label="Send email" />
+      </Form>
+    </div>
+  );
+};
+
+export { ForgotPasswordForm };
