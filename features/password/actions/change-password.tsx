@@ -13,7 +13,7 @@ const changePasswordSchema = z.object({
   password: z.string().min(6).max(100),
 });
 
-const changePasswordAction = async (_actionState: ActionState, formData: FormData) => {
+const changePasswordAction = async (_actionState: ActionState | undefined, formData: FormData) => {
   const user = await getAuthOrRedirect();
   let targetRedirectUrl = "";
 
