@@ -8,7 +8,7 @@ type PlaceholderProps = {
 }
 const Placeholder = ({label, icon=<LucideMessageSquareWarning />, button=<div />}: PlaceholderProps) => {
   return (
-    <div className="flex-1 min-h-screen flex self-center items-center justify-center flex-col gap-y-2">
+    <div className="flex-1 flex self-center items-center justify-center flex-col gap-y-2">
 
         {cloneElement(icon, { className: "w-16 h-16" })}
       <h2 className="text-center font-semibold">{label}</h2>
