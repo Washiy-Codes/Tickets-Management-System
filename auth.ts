@@ -12,6 +12,7 @@ declare module "next-auth" {
   interface Session {
     user: {
       id: string;
+      emailVerified: Date | null; 
       name?: string | null;
       email?: string | null;
       image?: string | null;
@@ -23,16 +24,21 @@ export const {
  handlers,
  signIn, 
  signOut, 
- auth 
+ auth,
+ unstable_update 
 } = NextAuth({
   adapter: PrismaAdapter(prisma), // Fix 1: Replaced 'db' with 'prisma'
   session: {
     strategy: "jwt",
   },
   callbacks: {
-    async jwt({ token, user }) {
+    async jwt({ token, user, trigger, session }) {
       if (user) {
         token.id = user.id;
+      }
+       // If unstable_update was triggered, push the live value into the JWT token
+      if (trigger === "update" && session?.user) {
+        token.emailVerified = session.user.emailVerified;
       }
       return token;
     },
@@ -40,6 +46,14 @@ export const {
       if (session.user && token.id) {
         session.user.id = token.id as string;
       }
+      // Fetch live state from database to ensure client is updated instantly
+        const dbUser = await prisma.user.findUnique({
+          where: { id: token.id as string },
+          select: { emailVerified: true },
+        });
+
+      session.user.emailVerified = dbUser?.emailVerified ?? null;
+      
       return session;
     },
   },
