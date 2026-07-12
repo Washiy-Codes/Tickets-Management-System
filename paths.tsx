@@ -10,10 +10,11 @@ const emailVerificationPath = () => "/email-verification";
 const organizationPath = () => "/organization";
 const onboardingPath = () => "/onboarding";
 const organizationCreatePath = () => "/organization/create";
-
+const selectActiveOrganizationPath = () => "/onboarding/select-active-organization";
 
 const accountProfilePath = ()=> "/account/profile";
 const accountPasswordPath = ()=> "/account/password";
+const membershipsPath = (organizationId: string) => `/organization/${organizationId}/memberships`;
 
 export { 
     ticketsPath, 
@@ -28,5 +29,7 @@ export {
     emailVerificationPath,
     organizationPath,
     onboardingPath,
-    organizationCreatePath
+    organizationCreatePath,
+    selectActiveOrganizationPath,
+    membershipsPath
 };
