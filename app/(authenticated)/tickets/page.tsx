@@ -21,7 +21,7 @@ const TicketsPage = async ({ searchParams }: TicketPageProps) => {
   const params = searchParamsCache.parse(resolvedSearchParams);
 
   return (
-    <div className="flex flex-col gap-8">
+    <div className="flex flex-col gap-y-2">
       <Heading title="My Tickets" description="All your tickets in one place" />
       <CardCompact 
         title="Create Ticket"

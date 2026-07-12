@@ -18,13 +18,11 @@ const TicketList = async ({userId, searchParams}:TicketListProps) =>{
 
 
     return(
-        <div className="flex flex-col gap-4 flex-1 items-center justify-center animate-fade-in-from-top">
-
-       <div className="w-full flex max-w-105 gap-x-2">
+      <div className="flex flex-col gap-4 flex-1 items-center justify-center animate-fade-in-from-top">
+       <div className="w-full flex max-w-105 gap-x-2 items-stretch">
         <div className="flex-1">
          <TicketSearchInput placeholder="search ticket..." />
        </div>
-
       <div className="flex-1">
       <TicketSortSelect
         options={[
@@ -48,6 +46,7 @@ const TicketList = async ({userId, searchParams}:TicketListProps) =>{
       />
         </div>
          </div>
+         <div className="flex flex-col gap-2 w-full max-w-105">
           {tickets.length > 0 ? (
             tickets.map((ticket) => (
               <TicketItem key={ticket.id} ticket={ticket} />
@@ -59,6 +58,7 @@ const TicketList = async ({userId, searchParams}:TicketListProps) =>{
             <TicketPagination paginatedTicketMetadata={ticketMetadata} />
           </div>
         </div>
+      </div>
     
     )
 }

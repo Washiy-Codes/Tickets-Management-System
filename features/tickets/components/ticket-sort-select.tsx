@@ -10,7 +10,12 @@ type TicketSortSelectProps = {
 const TicketSortSelect = ({ options }: TicketSortSelectProps) => {
   const [sort, setSort] = useQueryStates(sortParser, sortOptions);
 
-  return <SortSelect options={options} value={sort} onChange={setSort} />;
+  return (
+  <div className="flex justify-end h-10">
+    <SortSelect options={options} value={sort} onChange={setSort} />
+  </div>
+  );
+
 };
 
 export { TicketSortSelect };
