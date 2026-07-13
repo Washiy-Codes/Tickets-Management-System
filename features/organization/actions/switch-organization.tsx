@@ -10,7 +10,7 @@ import { organizationPath } from "@/paths";
 import { getAuthOrRedirect } from "@/features/auth/actions/get-auth-or-redirect";
 import { getOrganizationsForUser } from "../querries/get-user-organizations";
  const switchOrganization = async (organizationId: string) => {
-  const user  = await getAuthOrRedirect({checkActiveOrganization: false});
+  const {user}  = await getAuthOrRedirect({checkActiveOrganization: false});
   
   try {
   const organizations = await getOrganizationsForUser();

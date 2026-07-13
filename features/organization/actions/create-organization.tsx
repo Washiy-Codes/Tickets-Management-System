@@ -18,7 +18,7 @@ export const createOrganization = async (
   _actionState: ActionState,
   formData: FormData
 ) => {
-  const user  = await getAuthOrRedirect({
+  const {user}  = await getAuthOrRedirect({
     checkOrganizations: false,
     checkActiveOrganization: false,
   });
