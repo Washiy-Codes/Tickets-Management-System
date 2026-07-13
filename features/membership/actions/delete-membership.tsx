@@ -14,7 +14,7 @@ export const deleteMembership = async ({
   userId: string;
   organizationId: string;
 }) => {
- const user = await getAuthOrRedirect();
+ const {user} = await getAuthOrRedirect();
 
   const memberships = await getMemberships(organizationId);
 const isAdmin = memberships.some((membership) => membership.userId === user.id && membership.membershipRole === "ADMIN");

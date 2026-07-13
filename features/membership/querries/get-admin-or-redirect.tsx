@@ -4,7 +4,7 @@ import getMembership from "./get-membership";
 import { getAuthOrRedirect } from "@/features/auth/actions/get-auth-or-redirect";
 
 export const getAdminOrRedirect = async (organizationId: string) => {
-  const user = await getAuthOrRedirect();
+  const {user} = await getAuthOrRedirect();
 
   const membership = await getMembership({
     organizationId,
