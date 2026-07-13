@@ -1,7 +1,7 @@
 
 import {User} from "next-auth";
 type Entity = {
-  userId: string | null;
+  userId?: string | null;
 };
 
 const isOwner = async (authUser: User | null | undefined, 
