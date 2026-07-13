@@ -15,7 +15,8 @@ const selectActiveOrganizationPath = () => "/onboarding/select-active-organizati
 const accountProfilePath = ()=> "/account/profile";
 const accountPasswordPath = ()=> "/account/password";
 const membershipsPath = (organizationId: string) => `/organization/${organizationId}/memberships`;
-
+const ticketsByOrganizationPath = () => "/tickets/organization";
+const invitationsPath = (organizationId: string) => `/organization/${organizationId}/invitations`;
 export { 
     ticketsPath, 
     ticketPath, 
@@ -31,5 +32,7 @@ export {
     onboardingPath,
     organizationCreatePath,
     selectActiveOrganizationPath,
-    membershipsPath
+    membershipsPath,
+    ticketsByOrganizationPath,
+    invitationsPath
 };
