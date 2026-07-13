@@ -14,7 +14,7 @@ const changePasswordSchema = z.object({
 });
 
 const changePasswordAction = async (_actionState: ActionState | undefined, formData: FormData) => {
-  const user = await getAuthOrRedirect();
+  const {user} = await getAuthOrRedirect();
   let targetRedirectUrl = "";
 
   try {

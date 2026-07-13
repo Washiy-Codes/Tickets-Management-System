@@ -1,9 +1,6 @@
 "use server";
-import { ticketsPath } from "@/paths";
-import { redirect } from "next/navigation";
 import { ActionState, fromErrorToActionState, toActionState } from "@/components/form/utils/to-action-state";
 import { getAuthOrRedirect } from "@/features/auth/actions/get-auth-or-redirect";
-import { unstable_update } from "@/auth";
 import { generateVerificationCode } from "../utils/generate-verification-code";
 import { sendEmailVerification } from "@/features/auth/emails/send-email-verification";
 
@@ -13,7 +10,7 @@ const emailVerificationResendAction = async (
   _actionState: ActionState,
   formData: FormData
 ) => {
-  const user  = await getAuthOrRedirect({checkEmailVerified: false, checkOrganizations: false});
+  const {user}  = await getAuthOrRedirect({checkEmailVerified: false, checkOrganizations: false});
 
   try {
    

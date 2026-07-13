@@ -17,7 +17,7 @@ const emailVerificationAction = async (
   _actionState: ActionState,
   formData: FormData
 ) => {
-  const user  = await getAuthOrRedirect({
+  const {user}  = await getAuthOrRedirect({
     checkEmailVerified: false,
      checkOrganizations: false,
      checkActiveOrganization: false,
