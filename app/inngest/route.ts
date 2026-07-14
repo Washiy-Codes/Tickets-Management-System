@@ -5,6 +5,11 @@ import { passwordResetEvent } from "@/features/password/event/event-password-res
 
 export const {PUT, POST, GET} = serve({
     client: inngest,
-    functions: [passwordResetEvent]
+    functions: [
+        passwordResetEvent,
+        passwordResetEvent,
+        // invitationCreatedEvent
+
+    ]
 
 })
