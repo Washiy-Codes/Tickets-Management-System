@@ -2,7 +2,7 @@
 
 A production-grade, full-stack ticketing application built with the **Next.js App Router**, **Prisma ORM**, and **TypeScript**. This platform features a robust multi-tenant architecture allowing users to create organizations, manage team memberships, and handle dynamic role-based access controls.
 
-## 🚀 Key Features
+##  Key Features
 
 - **Multi-Tenant Architecture**: Dynamic organization creation and switching with isolated team workspaces.
 - **Role-Based Access Control (RBAC)**: Granular permission schemes (e.g., `canDeleteTicket`, `isAdmin`) managed securely via Next.js Server Actions.
@@ -125,5 +125,5 @@ const list: TransformedTicket[] = await Promise.all(
    npm run dev
    ```
 
-## 📄 License
+##  License
 This project is open-source and available under the [MIT License](LICENSE).
