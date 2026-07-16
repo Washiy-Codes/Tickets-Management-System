@@ -73,7 +73,7 @@ await prisma.\$transaction(async (tx) => {
 ### 3. Highly Optimized Data Transformations
 Data layer reads inject runtime metrics asynchronously before delivering content structures downstream to standard layout presentations:
 
-```typescript
+``typescript
 const list: TransformedTicket[] = await Promise.all(
   tickets.map(async (ticket) => {      
     const ticketIsOwner = await isOwner(user, ticket);
