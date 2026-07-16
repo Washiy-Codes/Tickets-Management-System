@@ -10,7 +10,7 @@ A production-grade, full-stack ticketing application built with the **Next.js Ap
 - **Strict Type Safety**: End-to-end type safety utilizing explicit Prisma payload intersection mappings (`Prisma.TicketGetPayload`).
 - **Server-Driven UI**: Secure routing guards, contextual breadcrumbs, and instantaneous UI updates using Next.js caching algorithms (`revalidatePath`).
 
-## 🛠️ Tech Stack
+##  Tech Stack
 
 - **Framework**: Next.js 15 (App Router, Server Actions)
 - **Database ORM**: Prisma Client (PostgreSQL / Supabase)
@@ -18,7 +18,7 @@ A production-grade, full-stack ticketing application built with the **Next.js Ap
 - **Language**: TypeScript (Strict Mode)
 - **Validation**: Zod
 
-## 📁 Architecture & File Structure
+##  Architecture & File Structure
 
 The project follows a scalable, feature-driven folder structure:
 
@@ -31,7 +31,7 @@ The project follows a scalable, feature-driven folder structure:
 │   └── tickets/               # Ticketing queries, forms, views, and contextual actions
 ```
 
-## 💻 Core Technical Implementations
+##  Core Technical Implementations
 
 ### 1. Secure Ownership & Permission Guards
 The core security layer implements a generic entity ownership check alongside organization membership verification to evaluate user actions dynamically:
