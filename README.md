@@ -90,7 +90,7 @@ const list: TransformedTicket[] = await Promise.all(
 );
 ```
 
-## 🛠️ Getting Started
+##  Getting Started
 
 ### Prerequisites
 - Node.js 18+ or 20+
