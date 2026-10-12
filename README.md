@@ -2,7 +2,7 @@
 
 A production-grade, full-stack ticketing application built with the **Next.js App Router**, **Prisma ORM**, and **TypeScript**. This platform features a robust multi-tenant architecture allowing users to create organizations, manage team memberships, and handle dynamic role-based access controls.
 
-## 🚀 Key Features
+##  Key Features
 
 - **Multi-Tenant Architecture**: Dynamic organization creation and switching with isolated team workspaces.
 - **Role-Based Access Control (RBAC)**: Granular permission schemes (e.g., `canDeleteTicket`, `isAdmin`) managed securely via Next.js Server Actions.
@@ -10,15 +10,15 @@ A production-grade, full-stack ticketing application built with the **Next.js Ap
 - **Strict Type Safety**: End-to-end type safety utilizing explicit Prisma payload intersection mappings (`Prisma.TicketGetPayload`).
 - **Server-Driven UI**: Secure routing guards, contextual breadcrumbs, and instantaneous UI updates using Next.js caching algorithms (`revalidatePath`).
 
-## 🛠️ Tech Stack
+##  Tech Stack
 
 - **Framework**: Next.js 15 (App Router, Server Actions)
 - **Database ORM**: Prisma Client (PostgreSQL / Supabase)
 - **Authentication**: NextAuth.js v5 (Auth.js)
-- **Language**: TypeScript (Strict Mode)
+- **Language**: TypeScript 
 - **Validation**: Zod
 
-## 📁 Architecture & File Structure
+##  Architecture & File Structure
 
 The project follows a scalable, feature-driven folder structure:
 
@@ -31,7 +31,7 @@ The project follows a scalable, feature-driven folder structure:
 │   └── tickets/               # Ticketing queries, forms, views, and contextual actions
 ```
 
-## 💻 Core Technical Implementations
+##  Core Technical Implementations
 
 ### 1. Secure Ownership & Permission Guards
 The core security layer implements a generic entity ownership check alongside organization membership verification to evaluate user actions dynamically:
@@ -73,7 +73,7 @@ await prisma.\$transaction(async (tx) => {
 ### 3. Highly Optimized Data Transformations
 Data layer reads inject runtime metrics asynchronously before delivering content structures downstream to standard layout presentations:
 
-```typescript
+``typescript
 const list: TransformedTicket[] = await Promise.all(
   tickets.map(async (ticket) => {      
     const ticketIsOwner = await isOwner(user, ticket);
@@ -90,7 +90,7 @@ const list: TransformedTicket[] = await Promise.all(
 );
 ```
 
-## 🛠️ Getting Started
+##  Getting Started
 
 ### Prerequisites
 - Node.js 18+ or 20+
@@ -125,5 +125,5 @@ const list: TransformedTicket[] = await Promise.all(
    npm run dev
    ```
 
-## 📄 License
+##  License
 This project is open-source and available under the [MIT License](LICENSE).
