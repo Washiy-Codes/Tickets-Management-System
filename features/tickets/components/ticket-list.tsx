@@ -16,8 +16,6 @@ type TicketListProps = {
 const TicketList = async ({userId, byOrganization, searchParams}:TicketListProps) =>{
       const { list: tickets, metadata: ticketMetadata } = await getTickets(userId, byOrganization, searchParams);
 
-
-
     return(
       <div className="flex flex-col gap-4 flex-1 items-center justify-center animate-fade-in-from-top">
        <div className="w-full flex max-w-105 gap-x-2 items-stretch">
