@@ -1,3 +1,46 @@
+
+import { HeaderNavigation } from '@/components/header-navigation'
+import { ThemeSwitcher } from '@/components/theme/theme-switcher'
+import { buttonVariants } from '@/components/ui/button'
+import { homePath } from '@/paths'
+import { LucideKanban } from 'lucide-react'
+import Link from 'next/link'
+
+const Header = () => {
+  return (
+    <nav className="
+      flex justify-between py-2.5 px-5
+      border-b w-full fixed left-0 right-0 top-0 z-20
+      supports-backdrop-blur:bg-background/80 backdrop-blur-sm" >
+      <div>
+        <Link href={homePath()} className={buttonVariants({ variant: "ghost" })}>
+          <LucideKanban />
+          <h1 className="text-lg ml-2 font-bold">TicketBounty</h1>
+        </Link>
+      </div>
+      <div className="flex items-center gap-2">
+        <ThemeSwitcher />
+        <HeaderNavigation /> 
+      </div>
+    </nav>
+  )
+}
+
+export { Header }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // import Link from 'next/link'
 // import { auth } from '@/auth'
 // import { ThemeSwitcher } from '@/components/theme/theme-switcher'
@@ -45,36 +88,4 @@
 // }
 
 // export { Header }
-
-
-
-
-import { HeaderNavigation } from '@/components/header-navigation'
-import { ThemeSwitcher } from '@/components/theme/theme-switcher'
-import { buttonVariants } from '@/components/ui/button'
-import { homePath } from '@/paths'
-import { LucideKanban } from 'lucide-react'
-import Link from 'next/link'
-
-const Header = () => {
-  return (
-    <nav className="
-      flex justify-between py-2.5 px-5
-      border-b w-full fixed left-0 right-0 top-0 z-20
-      supports-backdrop-blur:bg-background/80 backdrop-blur-sm" >
-      <div>
-        <Link href={homePath()} className={buttonVariants({ variant: "ghost" })}>
-          <LucideKanban />
-          <h1 className="text-lg ml-2 font-bold">TicketBounty</h1>
-        </Link>
-      </div>
-      <div className="flex items-center gap-2">
-        <ThemeSwitcher />
-        <HeaderNavigation /> 
-      </div>
-    </nav>
-  )
-}
-
-export { Header }
 
