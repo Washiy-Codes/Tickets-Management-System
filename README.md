@@ -1,4 +1,4 @@
-# Multi-Tenant Ticket Management System
+# Multi-Tenant Ticket Management Sy
 
 A production-grade, full-stack ticketing application built with the **Next.js App Router**, **Prisma ORM**, and **TypeScript**. This platform features a robust multi-tenant architecture allowing users to create organizations, manage team memberships, and handle dynamic role-based access controls.
 
